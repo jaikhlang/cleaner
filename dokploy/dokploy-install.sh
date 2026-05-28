@@ -1,0 +1,33 @@
+# docker-compose.yml (Dokploy Server)
+
+```yaml
+services:
+  dokploy:
+    image: dokploy/dokploy:latest
+    container_name: dokploy
+
+    network_mode: host
+
+    environment:
+      POSTGRES_HOST: 100.123.138.78
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: dokploy
+      POSTGRES_USER: dokploy
+      POSTGRES_PASSWORD: Xaxisc@Postgres_7002754372
+
+      REDIS_HOST: 100.123.138.78
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: Xaxisc@Redis_7002754372
+
+      NODE_ENV: production
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dokploy_data:/app/data
+
+    restart: unless-stopped
+
+
+volumes:
+  dokploy_data:
+```

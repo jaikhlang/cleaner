@@ -1,0 +1,68 @@
+# docker-compose.yml
+
+```yaml id="jv6y20"
+services:
+  traefik:
+    image: traefik:v3.1
+    container_name: traefik
+
+    network_mode: host
+
+    command:
+      - --api.dashboard=true
+      - --api.insecure=true
+
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+
+      - --log.level=INFO
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_data:/data
+
+    restart: unless-stopped
+
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+
+    network_mode: host
+
+    environment:
+      POSTGRES_USER: dokploy
+      POSTGRES_PASSWORD: Xaxisc@Postgres_7002754372
+      POSTGRES_DB: dokploy
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+
+    network_mode: host
+
+    command: >
+      redis-server
+      --appendonly yes
+      --requirepass "Xaxisc@Redis_7002754372"
+
+    volumes:
+      - redis_data:/data
+
+    restart: unless-stopped
+
+
+volumes:
+  postgres_data:
+  redis_data:
+  traefik_data:
+```
