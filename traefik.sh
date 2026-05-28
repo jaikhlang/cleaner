@@ -90,7 +90,7 @@ sudo docker rm -f dokploy-traefik 2>/dev/null || true
 # Create Traefik as Docker Swarm service
 sudo docker service create \
   --name dokploy-traefik \
-  --constraint 'node.role==dokploy' \
+  --constraint 'node.role=dokploy' \
   --network dokploy-network \
   --mount type=bind,source=/etc/dokploy/traefik/traefik.yml,target=/etc/traefik/traefik.yml \
   --mount type=bind,source=/etc/dokploy/traefik/dynamic,target=/etc/traefik/dynamic \
@@ -101,7 +101,7 @@ sudo docker service create \
   --publish mode=host,published=443,target=443,protocol=udp \
   --label "traefik.enable=true" \
   --label "traefik.http.routers.traefik.entrypoints=websecure" \
-  --label "traefik.http.routers.traefik.rule=Host(\`traefik.yourdomain.com\`)" \
+  --label "traefik.http.routers.traefik.rule=Host(\`dokploy.jaikhlang.me\`)" \
   --label "traefik.http.routers.traefik.service=api@internal" \
   --label "traefik.http.routers.traefik.middlewares=secure-headers" \
   --label "traefik.http.routers.traefik.tls.certresolver=letsencrypt" \
