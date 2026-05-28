@@ -1,6 +1,5 @@
 # docker-compose.yml (Dokploy Server)
 
-```yaml
 services:
   dokploy:
     image: dokploy/dokploy:latest
@@ -27,7 +26,5 @@ services:
 
     restart: unless-stopped
 
-
 volumes:
   dokploy_data:
-```
