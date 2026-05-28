@@ -90,7 +90,6 @@ sudo docker rm -f dokploy-traefik 2>/dev/null || true
 # Create Traefik as Docker Swarm service
 sudo docker service create \
   --name dokploy-traefik \
-  --constraint 'node.role=dokploy' \
   --network dokploy-network \
   --mount type=bind,source=/etc/dokploy/traefik/traefik.yml,target=/etc/traefik/traefik.yml \
   --mount type=bind,source=/etc/dokploy/traefik/dynamic,target=/etc/traefik/dynamic \
