@@ -9,8 +9,12 @@ bash
 
 # Using curl
 
-bash <(curl -s https://raw.githubusercontent.com/jaikhlang/clean/main/oci-reset.sh)
+curl -O https://raw.githubusercontent.com/jaikhlang/cleaner/refs/heads/main/oci-reset.sh
+chmod +x oci-reset.sh
+sudo ./oci-reset.sh --force
 
-# Or using wget
+sync && echo 3 > /proc/sys/vm/drop_caches
 
-bash <(wget -qO- https://raw.githubusercontent.com/jaikhlang/clean/main/oci-reset.sh)
+# One Line command
+
+sudo bash -c "curl -s https://raw.githubusercontent.com/jaikhlang/cleaner/refs/heads/main/oci-reset.sh | bash -s -- --force && sync && echo 3 > /proc/sys/vm/drop_caches && free -h"
