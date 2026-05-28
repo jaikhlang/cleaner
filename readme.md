@@ -12,7 +12,6 @@ bash
 curl -O https://raw.githubusercontent.com/jaikhlang/cleaner/refs/heads/main/oci-reset.sh
 chmod +x oci-reset.sh
 sudo ./oci-reset.sh --force
-
 sync && echo 3 > /proc/sys/vm/drop_caches
 
 # One Line command
